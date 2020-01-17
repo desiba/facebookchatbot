@@ -40,6 +40,9 @@ router.post('/webhook', async (req, res) => {
       var response = prompt("Enter your password?");
 
       alert("Hello, " + response);
+      
+      console.log(action);
+      console.log(response);
 
       /*
       switch(action) {
