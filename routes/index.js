@@ -36,6 +36,7 @@ return res.status(200).json({
 router.post('/webhook', async (req, res) => {
 
       const action = req.body.queryResult.action;
+      console.log(action);
 
       //var response = prompt("Enter your password?");
 
