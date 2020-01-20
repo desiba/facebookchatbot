@@ -1,19 +1,10 @@
 var express = require('express');
 var router = express.Router();
-//var popups = require('popups');
-//var read = require('read');
-
-
-
-const thousands = require('thousands');
-const moment = require('moment');
-
-let now = moment();
 
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  console.log("Server is working")
+  res.render("Server is working")
   //res.render('index', { title: 'botUI_api.ai' });
 });
 
