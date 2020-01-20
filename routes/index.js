@@ -40,12 +40,11 @@ router.post('/webhook', async (req, res) => {
       const action = req.body.queryResult.action;
       console.log(action);
 
-
+      require('../public/popups.html');
       
-      var read = require("read");
-      read({prompt: "Username: ", default: "test-user" }, function (er, user){
-          console.log(user);
-      });
+      //read({prompt: "Username: ", default: "test-user" }, function (er, user){
+          //console.log(user);
+      //});
       
 
       
