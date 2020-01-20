@@ -37,7 +37,7 @@ return res.status(200).json({
 
 
 
-router.post('/webhook', async (req, res) => {
+router.post('/webhook', (req, res) => {
 
     res.render('popups.html');
 
