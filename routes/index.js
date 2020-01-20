@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 
 
 router.post('/hello', (req, res) => {
-   console.log(res.body);
+   console.log("hello is working");
 
   //const dateToSearch = req.body.result && req.body.result.parameters && req.body.result.parameters.movie ? req.body.result.parameters.movie : 'The Godfather';
 
