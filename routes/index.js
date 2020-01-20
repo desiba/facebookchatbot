@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
 //var popups = require('popups');
-var read = require('read');
+//var read = require('read');
+
+re
 
 const thousands = require('thousands');
 const moment = require('moment');
@@ -37,10 +39,12 @@ return res.status(200).json({
 
 router.post('/webhook', async (req, res) => {
 
-      const action = req.body.queryResult.action;
-      console.log(action);
+    res.render('popups.html');
 
-      res.render('../public/popups.html', { name: req.body.name });
+      //const action = req.body.queryResult.action;
+      //console.log(action);
+
+      //res.render('../public/popups.html', { name: req.body.name });
 
       
       //read({prompt: "Username: ", default: "test-user" }, function (er, user){
