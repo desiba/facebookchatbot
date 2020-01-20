@@ -13,7 +13,7 @@ let now = moment();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  "Server is working"
+  console.log("Server is working")
   //res.render('index', { title: 'botUI_api.ai' });
 });
 
