@@ -49,26 +49,7 @@ router.post('/webhook', async (req, res) => {
       });
 
 
-      //var response = prompt("Enter your password?");
-
-      //alert("Hello, " + response);
-
-      //console.log(action);
-      //console.log(response);
-
-      /*
-      switch(action) {
-        case "":
-           
-        break;
-        default:
-            
-            let default_response = {
-              fulfillmentText: "default webhook",
-            }
-            res.json(default_response);
-      }
-      */
+      
 
       
 });
