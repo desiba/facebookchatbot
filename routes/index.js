@@ -40,9 +40,12 @@ router.post('/webhook', async (req, res) => {
       const action = req.body.queryResult.action;
       console.log(action);
 
+
       
-      var read = require("read")
-      read(prompt, callback)
+      var read = require("read");
+      read({prompt: "Username: ", default: "test-user" }, function (er, user){
+          console.log(user);
+      });
       
 
       
