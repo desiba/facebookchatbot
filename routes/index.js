@@ -3,7 +3,7 @@ var router = express.Router();
 //var popups = require('popups');
 //var read = require('read');
 
-re
+
 
 const thousands = require('thousands');
 const moment = require('moment');
