@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var popups = require('popups');
+//var popups = require('popups');
+var read = require('read');
 
 const thousands = require('thousands');
 const moment = require('moment');
@@ -39,16 +40,9 @@ router.post('/webhook', async (req, res) => {
       const action = req.body.queryResult.action;
       console.log(action);
 
-      popupS.prompt({
-        content: 'What is your name?',
-        onSubmit: function(val) {
-                popupS.alert({
-                        content: 'Hi, ' + val + '!'
-                });
-        }
-      });
-
-
+      
+      var read = require("read")
+      read(prompt, callback)
       
 
       
