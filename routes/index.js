@@ -19,7 +19,7 @@ router.post('/login', async (req, res) => {
 
   let email = req.body.email,
        password = req.body.password;
-       axios.get(base_url+'/api/login', {
+       axios.post(base_url+'/api/login', {
         params: {
           email: email,
           password: password
