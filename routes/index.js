@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 
 router.post('/login', (req, res) => {
     console.log(req.body.password);
-    res.redirect('/');
+    console.log(req.body.email);
 });
 
 //router.post('/getform', () => {
