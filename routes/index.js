@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var http = require('http');
+var axios = require('axios');
 
+var base_url = "https://investor-portal-backend.herokuapp.com";
 
 /* GET home page. */
 router.get('/', (req, res) => {
@@ -12,9 +14,27 @@ router.get('/', (req, res) => {
   
 });
 
-router.post('/login', (req, res) => {
-    console.log(req.body.password);
-    console.log(req.body.email);
+router.post('/login', async (req, res) => {
+  
+
+  let email = req.body.email,
+       password = req.body.password;
+       axios.get(base_url+'/api/login', {
+        params: {
+          email: email,
+          password: password
+        }
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+     
+
+
+    
 });
 
 //router.post('/getform', () => {
