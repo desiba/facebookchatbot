@@ -3,7 +3,7 @@ var router = express.Router();
 var http = require('http');
 var axios = require('axios');
 
-var base_url = "https://investor-portal-backend.herokuapp.com";
+const base_url = 'https://investor-portal-backend.herokuapp.com';
 
 /* GET home page. */
 router.get('/', (req, res) => {
@@ -19,7 +19,7 @@ router.post('/login', async (req, res) => {
 
   let email = req.body.email,
        password = req.body.password;
-       axios.post(base_url+'/api/login', {
+       await axios.post(base_url+'/api/login', {
         params: {
           email: email,
           password: password
