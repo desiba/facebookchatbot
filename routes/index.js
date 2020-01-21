@@ -44,7 +44,7 @@ return res.status(200).json({
 
 router.post('/webhook', (req, res) => {
 
-      var url = "http://localhost:3000";
+      var url = "https://fb-dgflow-chatbot.herokuapp.com/";
       var req = http.request(url, res => {
         
       });
