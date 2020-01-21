@@ -12,9 +12,9 @@ var index = require('./routes/index');
 var socket = require('./config/sock');
 var debug = require('debug')('express:view');
 var app = express();
-
+app.disable('etag');
 // view engine setup
-app.set('views', path.join(__dirname, 'public'));
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
@@ -23,7 +23,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-//app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 console.log('Server Started at Port 3000');
 app.use('/', index);
 socket.conn();
@@ -48,3 +48,4 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+

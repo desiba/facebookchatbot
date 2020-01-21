@@ -27,14 +27,11 @@
   <body>
     <div id="overlay"></div>
 
-    <dialog id="window">
+    <div id="window">
 
-        <form id="userpassword" method="post">
-            <input type="text" name="" value="">
-            <input type="submit" name="" value="Get Password">
-        </form>
+       
 
-        <!--
+        
             <div class="header">
                 <ul class="nav nav-tabs">
                 <li role="presentation" class="active">
@@ -43,12 +40,16 @@
                 <button class="btn btn-danger btn-sm pull-right" id="exit">Close</button>
                 </ul>
             </div>
-        -->
+        
         <div class="panel-body page-header">
             <!-- my content here -->
+            <form method="POST" action="/login" id="userpassword">
+                <input type="text" name="password" value=""/>
+                <button>Get Password</button>
+            </form>
         </div>
 
-    </dialog>
+    </div>
   </body>
   <script>
 
@@ -57,6 +58,7 @@
     (function() {
         var overlay = document.getElementById('overlay');
         var dialog = document.getElementById('window');
+        /*
         document.getElementById('show').onclick = function() {
             overlay.fadeIn(250);
             dialog.fadeIn(300);
@@ -65,14 +67,16 @@
             overlay.fadeOut(300);
             dialog.fadeOut(250);
         };
+        */
     })();
 
+    /*
     loginUser = (evt) => {
         evt.preventDefault();
 
     }
 
     loginForm.addEventListener('submit', loginUser);
-
+    */
   </script>
 </html>

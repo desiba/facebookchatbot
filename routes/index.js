@@ -3,14 +3,29 @@ var router = express.Router();
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render("Server is working")
-  //res.render('index', { title: 'botUI_api.ai' });
+router.get('/', (req, res) => {
+  //res.send("server index");
+  //res.type('html');
+  //res.header('Content-type', 'application/json');
+   res.render('popups', {name : req.body});
+  
 });
 
+router.post('/login', (req, res) => {
+    console.log(req.body.password);
+    res.redirect('/');
+});
+
+//router.post('/getform', () => {
+
+//});
+
+router.get('/getlocation', function(req, res, next){
+  loanservices.total_users_joined_today(req, res);
+});
 
 router.post('/hello', (req, res) => {
-   console.log("hello is working");
+   console.log(req.body);
 
   //const dateToSearch = req.body.result && req.body.result.parameters && req.body.result.parameters.movie ? req.body.result.parameters.movie : 'The Godfather';
 
@@ -26,31 +41,13 @@ return res.status(200).json({
 });
 
 
-
-
 router.post('/webhook', (req, res) => {
 
-    res.render('popups.html');
-
       //const action = req.body.queryResult.action;
+      res.redirect('/');
       //console.log(action);
-
-      //res.render('../public/popups.html', { name: req.body.name });
-
-      
-      //read({prompt: "Username: ", default: "test-user" }, function (er, user){
-          //console.log(user);
-      //});
-      
-
-      
+   
 });
-
-
-
-
-
-
 
 
 module.exports = router;
