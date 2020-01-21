@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var http = require('http');
 
 
 /* GET home page. */
@@ -43,9 +44,14 @@ return res.status(200).json({
 
 router.post('/webhook', (req, res) => {
 
-      //const action = req.body.queryResult.action;
-      res.redirect('/');
-      //console.log(action);
+      var url = "http://localhost:3000";
+      var req = http.request(url, res => {
+        
+      });
+
+      
+
+
    
 });
 
