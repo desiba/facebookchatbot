@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
 
 router.get('/options', (req, res, next) => {
   let referer = req.get('Referer');
-  
+
   console.log(referer);
 
   if (referer) {
@@ -30,8 +30,8 @@ router.get('/options', (req, res, next) => {
       } else if (referer.indexOf('www.facebook.com') >= 0) {
           res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
       }
-      
-      res.sendFile('../views/popups.html', {root: __dirname});
+      res.render('popups');
+      //res.sendFile('../views/popups.html', {root: __dirname});
   }
 });
 
