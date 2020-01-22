@@ -3,6 +3,10 @@ var router = express.Router();
 var http = require('http');
 var axios = require('axios');
 
+const FB_VERIFY_TOKEN = process.env.FB_VERIFY_TOKEN;
+const FB_PAGE_ACCESS_TOKEN = process.env.FB_PAGE_ACCESS_TOKEN;
+const FB_TEXT_LIMIT = 640;
+
 
 /* GET home page. */
 router.get('/', (req, res) => {
@@ -34,7 +38,7 @@ router.post('/login', async (req, res) => {
           fulfillmentText: errMsg,
         }
         res.json(login_response);
-        
+
         console.log({errMsg});
       });
      
@@ -70,7 +74,8 @@ return res.status(200).json({
 
 router.post('/webhook', (req, res) => {
 
-
+    var data = req.body;
+    console.log(JSON.stringify(data));
       
 });
 
