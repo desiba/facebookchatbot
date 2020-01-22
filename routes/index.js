@@ -29,6 +29,12 @@ router.post('/login', async (req, res) => {
       })
       .catch(function (error) {
         const errMsg = error.response.data.message ? error.response.data.message : error.response.data;
+
+        let login_response = {
+          fulfillmentText: errMsg,
+        }
+        res.json(login_response);
+        
         console.log({errMsg});
       });
      
