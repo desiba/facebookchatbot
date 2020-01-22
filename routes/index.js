@@ -15,8 +15,11 @@ router.get('/', (req, res) => {
 
 router.post('/login', async (req, res) => {
   
-  let email = req.body.email,
-       password = req.body.password;
+  let email = req.body.email;
+  let password = req.body.password;
+       console.log(email);
+       console.log(password);
+       
        await axios.post(`https://investor-portal-backend.herokuapp.com/api/login`, {
         params: {
           email: email,
