@@ -10,7 +10,7 @@ const PAGE_ID = process.env.PAGE_ID;
 
 
 /* GET home page. */
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
   let referer = req.get('Referer');
 
   console.log(referer);

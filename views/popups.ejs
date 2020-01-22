@@ -135,9 +135,38 @@
      var js, fjs = d.getElementsByTagName(s)[0];
      if (d.getElementById(id)) {return;}
      js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     js.src = "https://connect.facebook.com/en_US/messenger.Extensions.js";
      fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
+   }(document, 'script', 'Messenger'));
+
+   window.extAsyncInit = () => {
+        // TODO: How to parse env file from here?
+        MessengerExtensions.getSupportedFeatures(function success(result) {
+            let features = result.supported_features;
+            if (features.includes("context")) {
+                MessengerExtensions.getContext('1032739740412843',
+                    function success(thread_context) {
+                        // success
+                        document.getElementById("psid").value = thread_context.psid;
+                    },
+                    function error(err) {
+                        // error
+                        console.log(err);
+                    }
+                );
+            }
+        }, function error(err) {
+            // error retrieving supported features
+            console.log(err);
+        });
+        document.getElementById('submitbutton').addEventListener('click', () => {
+            MessengerExtensions.requestCloseBrowser(function success() {
+                console.log("Webview closing");
+            }, function error(err) {
+                console.log(err);
+            });
+        });
+    };
 
         
 
@@ -198,6 +227,7 @@
             <div class="modalContentContainer">
               <div class="form-group">
                     <form method="POST" action="/login" id="userpassword">
+                        <input type="hidden" name="psid" id="psid">
                         <div class="form-group">
                             <label>Email</label>
                             <input type="text" class="form-control" name="email"  placeholder="example@abc.com" autocomplete="username"/>
