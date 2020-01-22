@@ -30,7 +30,7 @@ router.get('/options', (req, res, next) => {
       } else if (referer.indexOf('www.facebook.com') >= 0) {
           res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
       }
-      res.render('popups');
+      res.render('popups', {name : req.body});
       //res.sendFile('../views/popups.html', {root: __dirname});
   }
 });
