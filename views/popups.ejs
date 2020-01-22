@@ -118,7 +118,7 @@
     </style>
     <script>
 
-
+/*
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '1032739740412843',
@@ -134,6 +134,7 @@
     });
       
   };
+  */
 
   (function(d, s, id){
      var js, fjs = d.getElementsByTagName(s)[0];
@@ -148,7 +149,7 @@
         MessengerExtensions.getSupportedFeatures(function success(result) {
             let features = result.supported_features;
             if (features.includes("context")) {
-                MessengerExtensions.getContext('1032739740412843',
+                MessengerExtensions.getContext(process.env.PAGE_ID,
                     function success(thread_context) {
                         // success
                         document.getElementById("psid").value = thread_context.psid;
@@ -229,7 +230,7 @@
               </div>
             <div class="modalContentContainer">
               <div class="form-group">
-                    <form method="POST" action="/optionspostback" id="userpassword">
+                    <form method="GET" action="/optionspostback" id="userpassword">
                         <input type="hidden" name="psid" id="psid">
                         <div class="form-group">
                             <label>Email</label>

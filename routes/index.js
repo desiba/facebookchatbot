@@ -43,7 +43,7 @@ router.get('/options', (req, res, next) => {
 });
 
 
-router.post('/optionspostback', (req, res) => {
+router.get('/optionspostback', (req, res) => {
   console.log(req.query);
   //let body = req.query;
   //let response = {
