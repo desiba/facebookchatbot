@@ -28,7 +28,7 @@ router.post('/login', async (req, res) => {
         console.log(response.data);
       })
       .catch(function (error) {
-        const errMsg = error.data.message ? error.data.message : error.data;
+        const errMsg = error.response.data.message ? error.response.data.message : error.response.data;
         console.log({errMsg});
       });
      
