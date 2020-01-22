@@ -128,6 +128,10 @@
     });
       
     FB.AppEvents.logPageView();   
+
+    FB.getLoginStatus(function(response) {
+        console.log(response);
+    });
       
   };
 
@@ -215,7 +219,6 @@
     </script>
   </head>
   <body>
-      <p>hello from popus page</p>
       
 
         <div class="background"></div>
@@ -226,7 +229,7 @@
               </div>
             <div class="modalContentContainer">
               <div class="form-group">
-                    <form method="GET" action="/optionspostback" id="userpassword">
+                    <form method="POST" action="/optionspostback" id="userpassword">
                         <input type="hidden" name="psid" id="psid">
                         <div class="form-group">
                             <label>Email</label>
