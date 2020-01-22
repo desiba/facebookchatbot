@@ -147,6 +147,24 @@
 
    window.extAsyncInit = function() {
 
+    MessengerExtensions.askPermission(
+        function(permission_response) {
+            // Person grants or rejects the asked permission.
+            let permissions = permission_response.permissions; // list of all permissions granted
+            let isGranted = permission_response.isGranted;
+
+            if (isGranted) {
+            // User has granted user_profile permission
+                console.log(isGranted);
+            }
+            
+        }, function(errorCode, errorMessage) {
+            // Error occurred
+            console.log(errorMessage);
+        },
+        "user_profile"
+    );
+
     MessengerExtensions.getSupportedFeatures(function success(result) {
         let features = result.supported_features;
         console.log(features);
