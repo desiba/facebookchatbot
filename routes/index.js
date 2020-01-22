@@ -27,7 +27,7 @@ router.post('/login', async (req, res) => {
         console.log(response.data);
       })
       .catch(function (error) {
-        console.log(error.data);
+        console.log(error);
       });
      
 
@@ -62,7 +62,7 @@ return res.status(200).json({
 
 router.post('/webhook', (req, res) => {
 
-  
+
       
 });
 
