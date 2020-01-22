@@ -17,7 +17,7 @@ router.post('/login', async (req, res) => {
   
   let email = req.body.email,
        password = req.body.password;
-       await axios.post('https://investor-portal-backend.herokuapp.com/api/login', {
+       await axios.post(`https://investor-portal-backend.herokuapp.com/api/login`, {
         params: {
           email: email,
           password: password
@@ -27,7 +27,7 @@ router.post('/login', async (req, res) => {
         console.log(response.data);
       })
       .catch(function (error) {
-        console.log(error);
+        console.log(error.data);
       });
      
 
@@ -62,15 +62,8 @@ return res.status(200).json({
 
 router.post('/webhook', (req, res) => {
 
-      var url = "https://fb-dgflow-chatbot.herokuapp.com/";
-      var req = http.request(url, res => {
-        
-      });
-
+  
       
-
-
-   
 });
 
 
