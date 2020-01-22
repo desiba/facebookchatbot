@@ -11,11 +11,18 @@ const PAGE_ID = process.env.PAGE_ID;
 
 /* GET home page. */
 router.get('/', (req, res) => {
-  //res.send("server index");
-  //res.type('html');
-  //res.header('Content-type', 'application/json');
-   res.render('popups', {name : req.body});
-  
+  let referer = req.get('Referer');
+
+  console.log(referer);
+
+  if (referer) {
+    if (referer.indexOf('www.messenger.com') >= 0) {
+        res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.messenger.com/');
+    } else if (referer.indexOf('www.facebook.com') >= 0) {
+        res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
+    }
+      res.render('popups', {name : req.body});
+  }
 });
 
 
