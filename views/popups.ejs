@@ -118,7 +118,7 @@
     </style>
     <script>
 
-/*
+
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '1032739740412843',
@@ -134,7 +134,7 @@
     });
       
   };
-  */
+  
 
   (function(d, s, id){
      var js, fjs = d.getElementsByTagName(s)[0];
@@ -144,6 +144,47 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'Messenger'));
 
+
+   window.extAsyncInit = function() {
+
+    MessengerExtensions.getSupportedFeatures(function success(result) {
+            let features = result.supported_features;
+            if (features.includes("context")) {
+                MessengerExtensions.getContext(process.env.PAGE_ID,
+                    function success(thread_context) {
+                        // success
+                        document.getElementById("psid").value = thread_context.psid;
+                    },
+                    function error(err) {
+                        // error
+                        console.log(err);
+                    }
+                );
+            }
+        }, function error(err) {
+            // error retrieving supported features
+            console.log(err);
+        });
+        document.getElementById('submitbutton').addEventListener('click', () => {
+            MessengerExtensions.requestCloseBrowser(function success() {
+                console.log("Webview closing");
+            }, function error(err) {
+                console.log(err);
+            });
+        });
+        
+    // the Messenger Extensions JS SDK is done loading 
+    alert('window extAsyncInit')  // This alert is coming
+    MessengerExtensions.getUserID(function success(uids) {
+            var psid = uids.psid;//This is your page scoped sender_id
+            alert("Getting PSID") // This alert is NOT COMING
+            alert("This is the user's psid " + psid); // Alert NOT COMING
+        }, function error(err) {
+            alert("Messenger Extension Error: " + err);
+        });
+};
+
+/*
    window.extAsyncInit = () => {
         // TODO: How to parse env file from here?
         MessengerExtensions.getSupportedFeatures(function success(result) {
@@ -172,7 +213,7 @@
             });
         });
     };
-
+*/
         
 
 /*
