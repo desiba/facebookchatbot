@@ -21,6 +21,9 @@ router.get('/', (req, res) => {
 
 router.get('/options', (req, res, next) => {
   let referer = req.get('Referer');
+  
+  console.log(referer);
+
   if (referer) {
       if (referer.indexOf('www.messenger.com') >= 0) {
           res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.messenger.com/');
