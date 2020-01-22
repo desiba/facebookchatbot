@@ -135,7 +135,7 @@
                             <label>Password</label>
                             <input type="password" class="form-control" name="password" autocomplete="current-password"/>
                         </div>
-                        <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+                        <button class="btn btn-primary btn-lg btn-block" type="submit" id="submitbutton">Submit</button>
                     </form>
               </div>
           </div>
@@ -173,15 +173,59 @@
 
     const loginForm = document.getElementById('userpassword');
 
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'Messenger'));
+
+    window.extAsyncInit = () => {
+        // TODO: How to parse env file from here?
+        MessengerExtensions.getSupportedFeatures(function success(result) {
+            let features = result.supported_features;
+            if (features.includes("context")) {
+                MessengerExtensions.getContext('1032739740412843',
+                    function success(thread_context) {
+                        // success
+                        document.getElementById("psid").value = thread_context.psid;
+                    },
+                    function error(err) {
+                        // error
+                        console.log(err);
+                    }
+                );
+            }
+        }, function error(err) {
+            // error retrieving supported features
+            console.log(err);
+        });
+        document.getElementById('submitButton').addEventListener('click', () => {
+            MessengerExtensions.requestCloseBrowser(function success() {
+                console.log("Webview closing");
+            }, function error(err) {
+                console.log(err);
+            });
+        });
+    };
+
+
+
+
     (function() {
 
         var overlay = document.getElementById('overlay');
         var dialog = document.getElementById('window');
-
+/*
         document.getElementById('userpassword').onsubmit = function(){
             window.close();
         }
-
+*/
         document.getElementById('close').onclick = function(){
             window.close();
         }
