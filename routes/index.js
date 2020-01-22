@@ -21,14 +21,15 @@ router.post('/login', async (req, res) => {
        console.log(password);
 
        await axios.post(`https://investor-portal-backend.herokuapp.com/api/login`, {
-          email: email,
-          password: password
+          email,
+          password
         })
       .then(function (response) {
         console.log(response.data);
       })
       .catch(function (error) {
-        console.log(error.data);
+        const errMsg = error.data.message ? error.data.message : error.data;
+        console.log({errMsg});
       });
      
 
