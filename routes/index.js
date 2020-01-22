@@ -43,6 +43,18 @@ router.get('/options', (req, res, next) => {
 });
 
 
+router.get('/optionspostback', (req, res) => {
+  console.log(req.query);
+  //let body = req.query;
+  //let response = {
+      //"text": `Great, I will book you a ${body.bed} bed, with ${body.pillows} pillows and a ${body.view} view.`
+  //};
+
+  //res.status(200).send('Please close this window to return to the conversation thread.');
+  //callSendAPI(body.psid, response);
+});
+
+
 
 router.post('/login', async (req, res) => {
   
