@@ -117,7 +117,7 @@
         }
     </style>
     <script>
-
+/*
 
   window.fbAsyncInit = function() {
     FB.init({
@@ -134,32 +134,30 @@
     });
       
   };
-  
+  */
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.com/en_US/messenger.Extensions.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'Messenger'));
+(function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/messenger.Extensions.js";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'Messenger'));
 
 
    window.extAsyncInit = function() {
 
-    // the Messenger Extensions JS SDK is done loading
-    MessengerExtensions.getUserID(function success(uids) {
-        // User ID was successfully obtained. 
-        var psid = uids.psid;
-        console.log("psid", psid)
-            $('.error').html(psid)
+    MessengerExtensions.getContext(process.env.PAGE_ID, 
+        function success(thread_context){
+        console.log(thread_context);
+        },
+        
+        function error(err){
+            console.log(err);
+        }
+    );
 
-    }, function error(err, errorMessage) {      
-        // Error handling code
-        console.log(err, errorMessage)
-        $('.error').html(errorMessage)
-    });    
-
+   
     /*
     MessengerExtensions.getSupportedFeatures(function success(result) {
             let features = result.supported_features;
