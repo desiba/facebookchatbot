@@ -147,6 +147,20 @@
 
    window.extAsyncInit = function() {
 
+    // the Messenger Extensions JS SDK is done loading
+    MessengerExtensions.getUserID(function success(uids) {
+        // User ID was successfully obtained. 
+        var psid = uids.psid;
+        console.log("psid", psid)
+            $('.error').html(psid)
+
+    }, function error(err, errorMessage) {      
+        // Error handling code
+        console.log(err, errorMessage)
+        $('.error').html(errorMessage)
+    });    
+
+    /*
     MessengerExtensions.getSupportedFeatures(function success(result) {
             let features = result.supported_features;
             if (features.includes("context")) {
@@ -172,7 +186,7 @@
                 console.log(err);
             });
         });
-        
+
     // the Messenger Extensions JS SDK is done loading 
     alert('window extAsyncInit')  // This alert is coming
     MessengerExtensions.getUserID(function success(uids) {
@@ -182,6 +196,7 @@
         }, function error(err) {
             alert("Messenger Extension Error: " + err);
         });
+    */
 };
 
 /*
