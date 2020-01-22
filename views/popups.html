@@ -116,65 +116,8 @@
             border-color: #007bff;
         }
     </style>
-  </head>
-  <body>
-        <div class="background"></div>
-        <div class="modalContainer">
-              <div class="modalTop">
-                <p class="modalTitle">Login to your Aella Note account</p>
-                <div class="closeBtn" id="close">X</div>
-              </div>
-            <div class="modalContentContainer">
-              <div class="form-group">
-                    <form method="POST" action="/login" id="userpassword">
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="text" class="form-control" name="email"  placeholder="example@abc.com" autocomplete="username"/>
-                        </div>
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" class="form-control" name="password" autocomplete="current-password"/>
-                        </div>
-                        <button class="btn btn-primary btn-lg btn-block" type="submit" id="submitbutton">Submit</button>
-                    </form>
-              </div>
-          </div>
-        </div>
-<!--
-
-    <div id="overlay"></div>
-
-    <div id="window">
-
-       
-
-        
-            <div class="header">
-                <ul class="nav nav-tabs">
-                <li role="presentation" class="active">
-                    <a>Detail</a>
-                </li>
-                <button class="btn btn-danger btn-sm pull-right" id="exit">Close</button>
-                </ul>
-            </div>
-        
-        <div class="panel-body page-header">
-             my content here 
-            <form method="POST" action="/login" id="userpassword">
-                <input type="text" name="password" value=""/>
-                <button>Get Password</button>
-            </form>
-        </div>
-    
-    </div>
--->
-  </body>
-  <script>
-
-    const loginForm = document.getElementById('userpassword');
-
-
-    (function (d, s, id) {
+    <script>
+             (function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) {
             return;
@@ -215,6 +158,46 @@
     };
 
 
+    </script>
+  </head>
+  <body>
+      <p>hello from popus page</p>
+      <!--
+
+        <div class="background"></div>
+        <div class="modalContainer">
+              <div class="modalTop">
+                <p class="modalTitle">Login to your Aella Note account</p>
+                <div class="closeBtn" id="close">X</div>
+              </div>
+            <div class="modalContentContainer">
+              <div class="form-group">
+                    <form method="POST" action="/login" id="userpassword">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="text" class="form-control" name="email"  placeholder="example@abc.com" autocomplete="username"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" name="password" autocomplete="current-password"/>
+                        </div>
+                        <button class="btn btn-primary btn-lg btn-block" type="submit" id="submitbutton">Submit</button>
+                    </form>
+              </div>
+          </div>
+        </div>
+
+    
+    
+    
+-->
+  </body>
+  <script>
+
+    const loginForm = document.getElementById('userpassword');
+
+
+   
 
 
     (function() {
