@@ -138,8 +138,19 @@
                     // TODO: How to parse env file from here?
                 
                     MessengerExtensions.getSupportedFeatures(function success (result) {
-                        console.log(result);
-                        
+                        let features = result.supported_features;
+                        if (features.includes("context")) {
+                            MessengerExtensions.getContext('EAAOrRXVfa6sBALcZB9SFiXn94NcOWs0BkAdZBpHMHaei3M7gIAsiylo5mDqmpoQuYh11bEGUog18fJJ877hnlemDBopQb8yd3Im5fbOQfNUJsZCFjcla61U9iITrZBN4lQfCoiE4MZAm3eKdZAPP1Y15GiUUciEnc87zKRizzUZBQZDZD',
+                                function success(thread_context) {
+                                    // success
+                                    document.getElementById("psid").value = thread_context.psid;
+                                },
+                                function error(err) {
+                                    // error
+                                    console.log(err);
+                                }
+                            );
+                        }
                     }, function error(err) {
                         // error retrieving supported features
                         console.log(err);
@@ -167,7 +178,7 @@
             <div class="modalContentContainer">
               <div class="form-group">
                     <form method="GET" action="/optionspostback" id="userpassword">
-                        <input type="hidden" id="psid" name="psid" />
+                        <input type="hidden" name="psid" id="psid">
                         <div class="form-group">
                             <label>Email</label>
                             <input type="text" class="form-control" name="email"  placeholder="example@abc.com" autocomplete="username"/>
