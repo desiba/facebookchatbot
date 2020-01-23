@@ -136,6 +136,14 @@
             
                 window.extAsyncInit = () => {
                     // TODO: How to parse env file from here?
+                    FB.init({
+                        appId      : '1032739740412843',
+                        cookie     : true,
+                        xfbml      : true,
+                        version    : 'v5.0'
+                    });
+                        
+                    FB.AppEvents.logPageView();   
                 
                     MessengerExtensions.getSupportedFeatures(function success (result) {
                         let features = result.supported_features;
