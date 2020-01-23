@@ -133,28 +133,28 @@ router.get('/webhook', (req, res) => {
  
   // Your verify token. Should be a random string.
   let VERIFY_TOKEN = process.env.FB_VERIFY_TOKEN;
-/*
-  // Parse the query params
+
+  
+  // Parse params from the webhook verification request
   let mode = req.query['hub.mode'];
   let token = req.query['hub.verify_token'];
   let challenge = req.query['hub.challenge'];
-
-  // Checks if a token and mode is in the query string of the request
+    
+  // Check if a token and mode were sent
   if (mode && token) {
-
-      // Checks the mode and token sent is correct
-      if (mode === 'subscribe' && token === VERIFY_TOKEN) {
-
-          // Responds with the challenge token from the request
-          console.log('WEBHOOK_VERIFIED');
-          res.status(200).send(challenge);
-
-      } else {
-          // Responds with '403 Forbidden' if verify tokens do not match
-          res.sendStatus(403);
-      }
+  
+    // Check the mode and token sent are correct
+    if (mode === 'subscribe' && token === VERIFY_TOKEN) {
+      
+      // Respond with 200 OK and challenge token from the request
+      console.log('WEBHOOK_VERIFIED');
+      res.status(200).send(challenge);
+    
+    } else {
+      // Responds with '403 Forbidden' if verify tokens do not match
+      res.sendStatus(403);      
+    }
   }
-  */
 });
 
 router.post('/webhook', (req, res) => {
