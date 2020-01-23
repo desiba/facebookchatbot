@@ -217,11 +217,7 @@
   </head>
   <body>
 
-        <fb:login-button 
-        scope="public_profile,email"
-        onlogin="checkLoginState();">
-      </fb:login-button>
-      
+       
 
         <div class="background"></div>
         <div class="modalContainer">
@@ -242,6 +238,11 @@
                             <input type="password" class="form-control" name="password" autocomplete="current-password"/>
                         </div>
                         <button class="btn btn-primary btn-lg btn-block" type="submit" id="submitbutton">Submit</button>
+                        <fb:login-button 
+                            scope="public_profile,email"
+                            onlogin="checkLoginState();">
+                        </fb:login-button>
+                      
                     </form>
               </div>
           </div>
