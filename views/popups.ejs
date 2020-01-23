@@ -123,6 +123,19 @@
   <body>
 
         <script>
+
+                window.fbAsyncInit = function() {
+                    FB.init({
+                        appId      : '1032739740412843',
+                        cookie     : true,
+                        xfbml      : true,
+                        version    : 'v5.0'
+                    });
+                    
+                    FB.AppEvents.logPageView();   
+                    
+                };
+
                 (function (d, s, id) {
                     var js, fjs = d.getElementsByTagName(s)[0];
                     if (d.getElementById(id)) {
@@ -135,15 +148,7 @@
                 }(document, 'script', 'Messenger'));
             
                 window.extAsyncInit = () => {
-                    // TODO: How to parse env file from here?
-                    FB.init({
-                        appId      : '1032739740412843',
-                        cookie     : true,
-                        xfbml      : true,
-                        version    : 'v5.0'
-                    });
-                        
-                    FB.AppEvents.logPageView();   
+                    // TODO: How to parse env file from here 
                 
                     MessengerExtensions.getSupportedFeatures(function success (result) {
                         let features = result.supported_features;
