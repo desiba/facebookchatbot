@@ -44,14 +44,14 @@ router.get('/options', (req, res, next) => {
 
 
 router.get('/optionspostback', (req, res) => {
-  console.log(req.query);
-  //let body = req.query;
-  //let response = {
-      //"text": `Great, I will book you a ${body.bed} bed, with ${body.pillows} pillows and a ${body.view} view.`
-  //};
 
-  //res.status(200).send('Please close this window to return to the conversation thread.');
-  //callSendAPI(body.psid, response);
+  let body = req.query;
+  let response = {
+      "text": `your email is ${body.email} and your password ia ${body.password} and your user-id is ${body.psid} .`
+  };
+
+  res.status(200).send('Please close this window to return to the conversation thread.');
+  callSendAPI(body.psid, response);
 });
 
 
@@ -240,30 +240,26 @@ function sendTextMessage(recipientId, text) {
 }
 
 
-// Sends response messages via the Send API
-function callSendAPI(messageData) {
-  request({
-      uri: 'https://graph.facebook.com/v3.2/me/messages',
-      qs: {
-          access_token: process.env.FB_PAGE_ACCESS_TOKEN
+function callSendAPI(sender_psid, response) {
+  // Construct the message body
+  let request_body = {
+      "recipient": {
+          "id": sender_psid
       },
-      method: 'POST',
-      json: messageData
-
-  }, function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-          var recipientId = body.recipient_id;
-          var messageId = body.message_id;
-
-          if (messageId) {
-              console.log("Successfully sent message with id %s to recipient %s",
-                  messageId, recipientId);
-          } else {
-              console.log("Successfully called Send API for recipient %s",
-                  recipientId);
-          }
+      "message": response
+  };
+  console.log(request_body);
+  // Send the HTTP request to the Messenger Platform
+  request({
+      "uri": "https://graph.facebook.com/v5.0/me/messages",
+      "qs": {"access_token": PAGE_ACCESS_TOKEN},
+      "method": "POST",
+      "json": request_body
+  }, (err, res, body) => {
+      if (!err) {
+          console.log('message sent!')
       } else {
-          console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
+          console.error("Unable to send message:" + err);
       }
   });
 }
