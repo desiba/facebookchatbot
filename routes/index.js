@@ -125,12 +125,7 @@ return res.status(200).json({
 });
 
 
-router.post('/webhook', (req, res) => {
 
-    var data = req.body;
-    console.log(data);
-      
-});
 
 
 // Adds support for GET requests to our webhook
@@ -159,6 +154,13 @@ router.get('/webhook', (req, res) => {
           res.sendStatus(403);
       }
   }
+});
+
+router.post('/webhook', (req, res) => {
+
+  var data = req.body;
+  console.log(data);
+    
 });
 
 
@@ -265,6 +267,7 @@ function callSendAPI(sender_psid, response) {
       
   }, (err, res, body) => {
       if (!err) {
+          console.log(err);
           console.log('message sent!');
           console.log(body);
       } else {
