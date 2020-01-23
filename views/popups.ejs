@@ -177,6 +177,23 @@
             
                 window.extAsyncInit = () => {
                     // TODO: How to parse env file from here 
+
+                    MessengerExtensions.askPermission(
+                        function(permission_response) {
+                            // Person grants or rejects the asked permission.
+                            let permissions = permission_response.permissions; // list of all permissions granted
+                            let isGranted = permission_response.isGranted;
+
+                            if (isGranted) {
+                            // User has granted user_profile permission
+                              console.log('granted');
+                            }
+                            
+                        }, function(errorCode, errorMessage) {
+                            console.log(errorMessage);
+                        },
+                        "user_profile"
+                    );
                 
                     MessengerExtensions.getSupportedFeatures(function success (result) {
                         let features = result.supported_features;
@@ -196,6 +213,9 @@
                         // error retrieving supported features
                         console.log(err);
                     });
+
+
+
                     
                     document.getElementById('submitbutton').addEventListener('click', () => {
                         MessengerExtensions.requestCloseBrowser(function success() {
