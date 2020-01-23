@@ -51,27 +51,11 @@ router.get('/optionspostback', (req, res) => {
       "text": `your email is ${body.email} and your password ia ${body.password} and your user-id is ${body.psid} .`
   };
 
-  let login_response = {
-    fulfillmentText: {
-          "platform": "FACEBOOK",
-          "card": {
-            "title": "Title: this is a title",
-            "subtitle": "This is an subtitle.  Text can include unicode characters including emoji 📱.",
-            "imageUri": "https://developers.google.com/actions/images/badges/XPM_BADGING_GoogleAssistant_VER.png",
-            "buttons": [
-              {
-                "text": "This is a button",
-                "postback": "https://assistant.google.com/"
-              }
-            ]
-          }
-        }
-      }
-  res.json(login_response);
+  
 
 
-  //res.status(200).send('Please close this window to return to the conversation thread.');
- // callSendAPI(body.psid, response);
+  res.status(200).send('Please close this window to return to the conversation thread.');
+  callSendAPI(body.psid, response);
 });
 
 
@@ -261,12 +245,11 @@ function sendTextMessage(recipientId, text) {
 
 
 function callSendAPI(sender_psid, response) {
-  let apiai = apiaiApp.textRequest(text, {
-		sessionId: '<insert-your-dialogflow-session-id-here>'
-	});
+  
 
   // Construct the message body
   let request_body = {
+      "messaging_type": 'RESPONSE',
       "recipient": {
           "id": sender_psid
       },
@@ -278,7 +261,11 @@ function callSendAPI(sender_psid, response) {
       "uri": "https://graph.facebook.com/v5.0/me/messages",
       "qs": {"access_token": FB_PAGE_ACCESS_TOKEN},
       "method": "POST",
-      "json": request_body
+      "json": request_body,
+      "headers": {
+        'Content-Type': 'application/json',
+      }
+      
   }, (err, res, body) => {
       if (!err) {
           console.log('message sent!');

@@ -33,16 +33,9 @@ request.end();
 
 
 
-//getRes('payment summary today').then(function(res){console.log(res)});
+getRes('hi').then(function(res){console.log(res)});
 
 
 
-getRes('who linked card 539923  2386').then(function(res){console.log(res)});
-
-//getRes('total loans disbursed on 20-04-2019').then(function(res){console.log(res)});
-
-//getRes('total amount of loans disbursed yesterday').then(function(res){console.log(res)});
-
-//getRes('total loans disbursed').then(function(res){console.log(res)});
 
 module.exports = {getRes}
