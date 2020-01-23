@@ -116,15 +116,84 @@
             border-color: #007bff;
         }
     </style>
+
+<script>
+
+        const loginForm = document.getElementById('userpassword');
+    
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/messenger.Extensions.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'Messenger'));
+    
+    
+       window.extAsyncInit = function() {
+    
+    MessengerExtensions.askPermission(
+        function(permission_response) {
+            // Person grants or rejects the asked permission.
+            let permissions = permission_response.permissions; // list of all permissions granted
+            let isGranted = permission_response.isGranted;
+    
+            if (isGranted) {
+            // User has granted user_profile permission
+                console.log(isGranted);
+            }
+            
+        }, function(errorCode, errorMessage) {
+            // Error occurred
+            console.log(errorMessage);
+        },
+        "user_profile"
+    );
+    
+    MessengerExtensions.getSupportedFeatures(function success(result) {
+        let features = result.supported_features;
+        console.log(features);
+    
+    }, function error(err) {
+        console.log(err);
+    });
+    
+    MessengerExtensions.getContext('1032739740412843', 
+        function success(thread_context){
+            console.log('fb id');
+            console.log(thread_context);
+        },
+    
+        function error(err){
+            console.log(err);
+        }
+    );
+    
+    
+       }
+       
+    
+    
+        (function() {
+    
+            var overlay = document.getElementById('overlay');
+            var dialog = document.getElementById('window');
+    
+            document.getElementById('userpassword').onsubmit = function(){
+                window.close();
+            },
+    
+            document.getElementById('close').onclick = function(){
+                window.close();
+            }
+    
+        })();
+    
+      </script>
    
   </head>
   <body>
       
-    <script>
-       
-
-
-    </script>
 
         <div class="background"></div>
         <div class="modalContainer">
@@ -155,77 +224,5 @@
     
 
   </body>
-  <script>
-
-    const loginForm = document.getElementById('userpassword');
-
-    (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/en_US/messenger.Extensions.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'Messenger'));
-
-
-   window.extAsyncInit = function() {
-
-MessengerExtensions.askPermission(
-    function(permission_response) {
-        // Person grants or rejects the asked permission.
-        let permissions = permission_response.permissions; // list of all permissions granted
-        let isGranted = permission_response.isGranted;
-
-        if (isGranted) {
-        // User has granted user_profile permission
-            console.log(isGranted);
-        }
-        
-    }, function(errorCode, errorMessage) {
-        // Error occurred
-        console.log(errorMessage);
-    },
-    "user_profile"
-);
-
-MessengerExtensions.getSupportedFeatures(function success(result) {
-    let features = result.supported_features;
-    console.log(features);
-
-}, function error(err) {
-    console.log(err);
-});
-
-MessengerExtensions.getContext('1032739740412843', 
-    function success(thread_context){
-        console.log('fb id');
-        console.log(thread_context);
-    },
-
-    function error(err){
-        console.log(err);
-    }
-);
-
-
-   }
-   
-
-
-    (function() {
-
-        var overlay = document.getElementById('overlay');
-        var dialog = document.getElementById('window');
-
-        document.getElementById('userpassword').onsubmit = function(){
-            window.close();
-        },
-
-        document.getElementById('close').onclick = function(){
-            window.close();
-        }
-
-    })();
-
-  </script>
+  
 </html>
