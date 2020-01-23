@@ -141,6 +141,10 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
             
+       
+    
+       window.extAsyncInit = function() {
+
         FB.getLoginStatus(function(response) {
             statusChangeCallback(response);
         });
@@ -150,8 +154,6 @@
                 statusChangeCallback(response);
             });
         }
-    
-       window.extAsyncInit = function() {
     
     MessengerExtensions.askPermission(
         function(permission_response) {
