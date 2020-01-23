@@ -242,6 +242,10 @@ function sendTextMessage(recipientId, text) {
 
 
 function callSendAPI(sender_psid, response) {
+  let apiai = apiaiApp.textRequest(text, {
+		sessionId: '<insert-your-dialogflow-session-id-here>'
+	});
+
   // Construct the message body
   let request_body = {
       "recipient": {
@@ -258,7 +262,8 @@ function callSendAPI(sender_psid, response) {
       "json": request_body
   }, (err, res, body) => {
       if (!err) {
-          console.log('message sent!')
+          console.log('message sent!');
+          console.log(body);
       } else {
           console.error("Unable to send message:" + err);
       }
