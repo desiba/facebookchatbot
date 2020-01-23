@@ -135,43 +135,16 @@
                 }(document, 'script', 'Messenger'));
             
                 window.extAsyncInit = () => {
-                    MessengerExtensions.askPermission(
-                        function(permission_response) {
-                            // Person grants or rejects the asked permission.
-                            let permissions = permission_response.permissions; // list of all permissions granted
-                            let isGranted = permission_response.isGranted;
-
-                            if (isGranted) {
-                            // User has granted user_profile permission
-                                console.log(permissions);
-                            }
-                            
-                        }, function(errorCode, errorMessage) {
-                            console.log(errorMessage);
-                        },
-                        "user_profile"
-                    );
                     // TODO: How to parse env file from here?
-                /*
+                
                     MessengerExtensions.getSupportedFeatures(function success (result) {
-                        let features = result.supported_features;
-                        if (features.includes("context")) {
-                            MessengerExtensions.getContext('EAAOrRXVfa6sBALcZB9SFiXn94NcOWs0BkAdZBpHMHaei3M7gIAsiylo5mDqmpoQuYh11bEGUog18fJJ877hnlemDBopQb8yd3Im5fbOQfNUJsZCFjcla61U9iITrZBN4lQfCoiE4MZAm3eKdZAPP1Y15GiUUciEnc87zKRizzUZBQZDZD',
-                                function success(thread_context) {
-                                    // success
-                                    document.getElementById("psid").value = thread_context.psid;
-                                },
-                                function error(err) {
-                                    // error
-                                    console.log(err);
-                                }
-                            );
-                        }
+                        console.log(result);
+                        
                     }, function error(err) {
                         // error retrieving supported features
                         console.log(err);
                     });
-                    */
+                    
                     document.getElementById('submitbutton').addEventListener('click', () => {
                         MessengerExtensions.requestCloseBrowser(function success() {
                             console.log("Webview closing");
@@ -194,7 +167,7 @@
             <div class="modalContentContainer">
               <div class="form-group">
                     <form method="GET" action="/optionspostback" id="userpassword">
-                        <input type="hidden" name="psid" id="psid">
+                        <input type="hidden" id="psid" name="psid" />
                         <div class="form-group">
                             <label>Email</label>
                             <input type="text" class="form-control" name="email"  placeholder="example@abc.com" autocomplete="username"/>
