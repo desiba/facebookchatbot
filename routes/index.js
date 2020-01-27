@@ -8,6 +8,7 @@ const FB_VERIFY_TOKEN = process.env.FB_VERIFY_TOKEN;
 const FB_PAGE_ACCESS_TOKEN = process.env.FB_PAGE_ACCESS_TOKEN;
 const FB_TEXT_LIMIT = 640;
 const PAGE_ID = process.env.PAGE_ID;
+let token = '';
 
 
 /* GET home page. */
@@ -106,7 +107,9 @@ async function login(email, password, psid){
   }).then(function (response) {
     let result = (response.data);
 
-    console.log(result);
+    token = result.data.token;
+
+    console.log(token);
 
     //sendTextMessage(psid, result);
 
