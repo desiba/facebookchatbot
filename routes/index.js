@@ -53,10 +53,11 @@ router.get('/optionspostback', (req, res) => {
       "text": `your email is ${body.email} and your password ia ${body.password} and your user-id is ${body.psid}.`
   };
 
-  res.status(200).send('Please close this window to return to the conversation thread.');
+  //res.status(200).send('Please close this window to return to the conversation thread.');
 
   //callSendAPI(body.psid, response);
-  sendTextMessage(body.psid, response);
+  login(body.email, body.password);
+  //sendTextMessage(body.psid, response);
 });
 
 
