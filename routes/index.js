@@ -116,7 +116,7 @@ async function login(email, password, psid){
 
     const errMsg = error.response.data.message ? error.response.data.message : error.response.data;
 
-    sendTextMessage(body.psid, {"text": errMsg});
+    sendTextMessage(psid, {"text": errMsg});
 
     
 });
