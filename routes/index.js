@@ -105,11 +105,11 @@ async function login(email, password, psid){
     email,
     password
   }).then(function (response) {
-    let result = (response.data);
+    let result = (response.data.token);
 
-    token = result.data.token;
+    //token = result.data.token;
 
-    console.log(token);
+    console.log(result);
 
     //sendTextMessage(psid, result);
 
