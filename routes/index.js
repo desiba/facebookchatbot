@@ -56,7 +56,7 @@ router.get('/optionspostback', (req, res) => {
   //res.status(200).send('Please close this window to return to the conversation thread.');
 
   //callSendAPI(body.psid, response);
-  login(body.email, body.password);
+  login(body.email, body.password, body.psid);
   //sendTextMessage(body.psid, response);
 });
 
@@ -98,7 +98,7 @@ return res.status(200).json({
 });
 
 
-async function login(email, password){
+async function login(email, password, psid){
 
   await axios.post(`https://investor-portal-backend.herokuapp.com/api/login`, {
     email,
@@ -106,7 +106,7 @@ async function login(email, password){
   }).then(function (response) {
     let result = (response.data);
 
-    sendTextMessage(body.psid, result);
+    sendTextMessage(psid, result);
 
   }).catch(function (error) {
 
