@@ -105,13 +105,13 @@ async function login(email, password, psid){
     email,
     password
   }).then(function (response) {
-    let result = response.data.token;
+    token = response.data.token;
 
     //token = result.data.token;
 
-    console.log(result);
+    //console.log(result);
 
-    //sendTextMessage(psid, result);
+    sendMenuMessage(psid);
 
   }).catch(function (error) {
 
@@ -254,7 +254,42 @@ function verifyRequestSignature(req, res, buf) {
 }
 
 
+function sendMenuMessage(psid){
 
+  let message = {
+    "facebook": {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "button",
+          "text": "What would you like to know?",
+          "buttons": [
+            {
+              "type": "postback",
+              "payload": "General Information",
+              "title": "General Info"
+            },
+            {
+              "type": "postback",
+              "payload": "General Information",
+              "title": "General Info"
+            }
+          ]
+        }
+      }
+    }
+  };
+
+  let request_body = {
+    "messaging_type": 'RESPONSE',
+    "recipient": {
+      "id": psid
+    },
+      "message": message
+    };
+
+  callSendAPI(request_body);
+}
 
 function sendTextMessage(sender_psid, message){
    // Construct the message body
