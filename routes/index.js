@@ -257,7 +257,7 @@ function verifyRequestSignature(req, res, buf) {
 function sendMenuMessage(psid){
 
   let message = {
-    "facebook": {
+   
       "attachment": {
         "type": "template",
         "payload": {
@@ -277,7 +277,6 @@ function sendMenuMessage(psid){
           ]
         }
       }
-    }
   };
 
   let request_body = {
