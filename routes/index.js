@@ -106,7 +106,9 @@ async function login(email, password, psid){
   }).then(function (response) {
     let result = (response.data);
 
-    sendTextMessage(psid, result);
+    console.log(result);
+
+    //sendTextMessage(psid, result);
 
   }).catch(function (error) {
 
