@@ -48,8 +48,9 @@ router.get('/optionspostback', (req, res) => {
 
   let body = req.query;
   let resp = login(email, password);
+  console.log(resp);
   let response = {
-      "text": `your email is ${body.email} and your password ia ${body.password} and your user-id is ${body.psid}.\n ${resp}`
+      "text": `your email is ${body.email} and your password ia ${body.password} and your user-id is ${body.psid}.`
   };
 
   res.status(200).send('Please close this window to return to the conversation thread.');
