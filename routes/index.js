@@ -47,8 +47,9 @@ router.get('/options', (req, res, next) => {
 router.get('/optionspostback', (req, res) => {
 
   let body = req.query;
+  let resp = login(email, password);
   let response = {
-      "text": `your email is ${body.email} and your password ia ${body.password} and your user-id is ${body.psid} .`
+      "text": `your email is ${body.email} and your password ia ${body.password} and your user-id is ${body.psid}.\n ${resp}`
   };
 
   res.status(200).send('Please close this window to return to the conversation thread.');
@@ -64,39 +65,7 @@ router.post('/login', async (req, res) => {
        console.log(email);
        console.log(password);
 
-       await axios.post(`https://investor-portal-backend.herokuapp.com/api/login`, {
-          email,
-          password
-        })
-      .then(function (response) {
-        console.log(response.data);
-      })
-      .catch(function (error) {
-        const errMsg = error.response.data.message ? error.response.data.message : error.response.data;
-
-        let login_response = {
-          fulfillmentText: {
-                "platform": "FACEBOOK",
-                "card": {
-                  "title": "Title: this is a title",
-                  "subtitle": "This is an subtitle.  Text can include unicode characters including emoji 📱.",
-                  "imageUri": "https://developers.google.com/actions/images/badges/XPM_BADGING_GoogleAssistant_VER.png",
-                  "buttons": [
-                    {
-                      "text": "This is a button",
-                      "postback": "https://assistant.google.com/"
-                    }
-                  ]
-                }
-              }
-            }
-        res.json(login_response);
-
-        console.log({errMsg});
-      });
-     
-
-
+      
     
 });
 
@@ -125,7 +94,26 @@ return res.status(200).json({
 });
 
 
+async function login(email, password){
 
+  await axios.post(`https://investor-portal-backend.herokuapp.com/api/login`, {
+    email,
+    password
+  }).then(function (response) {
+    let result = (response.data);
+    return result;
+  }).catch(function (error) {
+    const errMsg = error.response.data.message ? error.response.data.message : error.response.data;
+
+    return errMsg;
+
+    
+});
+
+
+
+
+}
 
 
 // Adds support for GET requests to our webhook
@@ -228,6 +216,26 @@ const handlePostback = (sender_psid, received_postback) => {
 }
 
 
+
+function verifyRequestSignature(req, res, buf) {
+	let signature = req.headers["x-hub-signature"];
+
+	if (!signature) {
+		throw new Error('Couldn\'t validate the signature.');
+	} else {
+		let elements = signature.split('=');
+		let method = elements[0];
+		let signatureHash = elements[1];
+
+		let expectedHash = crypto.createHmac('sha1', config.FB_APP_SECRET)
+			.update(buf)
+			.digest('hex');
+
+		if (signatureHash != expectedHash) {
+			throw new Error("Couldn't validate the request signature.");
+		}
+	}
+}
 
 
 
