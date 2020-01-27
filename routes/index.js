@@ -107,9 +107,6 @@ async function login(email, password, psid){
   }).then(function (response) {
     token = response.data.token;
 
-    //token = result.data.token;
-
-    //console.log(result);
 
     sendMenuMessage(psid);
 
@@ -266,13 +263,18 @@ function sendMenuMessage(psid){
           "buttons": [
             {
               "type": "postback",
-              "payload": "General Information",
-              "title": "General Info"
+              "payload": "Total Investments",
+              "title": "total investments"
             },
             {
               "type": "postback",
-              "payload": "General Information",
-              "title": "General Info"
+              "payload": "Wallet Balance",
+              "title": "wallet balance"
+            },
+            {
+              "type": "postback",
+              "payload": "Daily Interest",
+              "title": "daily interest"
             }
           ]
         }
