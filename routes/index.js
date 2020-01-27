@@ -54,7 +54,9 @@ router.get('/optionspostback', (req, res) => {
   };
 
   res.status(200).send('Please close this window to return to the conversation thread.');
-  callSendAPI(body.psid, response);
+
+  //callSendAPI(body.psid, response);
+  sendTextMessage(body.psid, response);
 });
 
 
@@ -102,11 +104,18 @@ async function login(email, password){
     password
   }).then(function (response) {
     let result = (response.data);
-    return result;
+
+    sendTextMessage(body.psid, result);
+
   }).catch(function (error) {
+
+    //let response = {
+      //"text": `your email is ${body.email} and your password ia ${body.password} and your user-id is ${body.psid}.`
+    //};
+
     const errMsg = error.response.data.message ? error.response.data.message : error.response.data;
 
-    return errMsg;
+    sendTextMessage(body.psid, {"text": errMsg});
 
     
 });
@@ -240,19 +249,23 @@ function verifyRequestSignature(req, res, buf) {
 
 
 
-function callSendAPI(sender_psid, response) {
-  
 
-  // Construct the message body
-  let request_body = {
-      "messaging_type": 'RESPONSE',
-      "recipient": {
-          "id": sender_psid
-      },
-      "message": response
-  };
-  console.log(request_body);
-  // Send the HTTP request to the Messenger Platform
+function sendTextMessage(sender_psid, message){
+   // Construct the message body
+   let request_body = {
+    "messaging_type": 'RESPONSE',
+    "recipient": {
+      "id": sender_psid
+    },
+      "message": message
+    };
+
+    callSendAPI(request_body);
+}
+
+
+function callSendAPI(request_body) {
+  
   request({
       "uri": "https://graph.facebook.com/v5.0/me/messages",
       "qs": {"access_token": FB_PAGE_ACCESS_TOKEN},
