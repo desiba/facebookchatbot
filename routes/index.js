@@ -163,7 +163,7 @@ router.post('/webhook', (req, res) => {
   // Parse the request body from the POST
   let body = req.body;
 
-  console.log(JSON.stringify(data));
+  console.log(JSON.stringify(body));
   
   
 /*
