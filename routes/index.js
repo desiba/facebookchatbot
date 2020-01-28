@@ -178,7 +178,7 @@ router.post('/webhook', async (req, res) => {
 
 
           
-              await axios.post(`https://investor-portal-backend.herokuapp.com/api/investment/total`, {
+              await axios.get(`https://investor-portal-backend.herokuapp.com/api/investment/total`, {
                 headers: {
                   "Content-Type": "application/json",
                   "authorization" : `Bearer ${token}`
