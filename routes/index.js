@@ -177,9 +177,10 @@ router.post('/webhook', async (req, res) => {
         console.log(psid);
 
 
-          /*
+          
               await axios.post(`https://investor-portal-backend.herokuapp.com/api/investment/total`, {
                 headers: {
+                  "Content-Type": "application/json",
                   "authorization" : `Bearer ${token}`
                 }
               }).then(function (response) {
@@ -195,7 +196,7 @@ router.post('/webhook', async (req, res) => {
                 
             });
             
-*/
+
            
 
 
