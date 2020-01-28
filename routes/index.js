@@ -9,6 +9,7 @@ const FB_PAGE_ACCESS_TOKEN = process.env.FB_PAGE_ACCESS_TOKEN;
 const FB_TEXT_LIMIT = 640;
 const PAGE_ID = process.env.PAGE_ID;
 let token = '';
+let psid = '';
 
 
 /* GET home page. */
@@ -53,6 +54,8 @@ router.get('/optionspostback', (req, res) => {
   let response = {
       "text": `your email is ${body.email} and your password ia ${body.password} and your user-id is ${body.psid}.`
   };
+
+  psid = body.psid;
 
   //res.status(200).send('Please close this window to return to the conversation thread.');
 
