@@ -173,8 +173,11 @@ router.post('/webhook', async (req, res) => {
 
         case "input.total_investments":
 
+        console.log(token);
+        console.log(psid);
 
-          
+
+          /*
               await axios.post(`https://investor-portal-backend.herokuapp.com/api/investment/total`, {
                 headers: {
                   "authorization" : `Bearer ${token}`
@@ -192,7 +195,7 @@ router.post('/webhook', async (req, res) => {
                 
             });
             
-
+*/
            
 
 
