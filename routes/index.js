@@ -185,7 +185,9 @@ router.post('/webhook', async (req, res) => {
                 }
               }).then(function (response) {
 
-                console.log(response);
+                //console.log(response.data.total);
+                sendTextMessage(psid, {"text": response.data.total});
+            
             
               }).catch(function (error) {
             
