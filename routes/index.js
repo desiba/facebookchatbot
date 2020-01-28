@@ -194,7 +194,7 @@ router.post('/webhook', async (req, res) => {
                 const errMsg = error.response.data.message ? error.response.data.message : error.response.data;
                 console.log(errMsg);
 
-                if(errMsg.err.name == 'JsonWebTokenError'){
+                if(errMsg.err.name == 'JsonWebTokenError' || errMsg.error.type == 'OAuthException'){
 
                   let request_body = {
                     "messaging_type": 'RESPONSE',
