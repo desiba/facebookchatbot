@@ -196,7 +196,7 @@ router.post('/webhook', async (req, res) => {
 
                 if(errMsg.err.name == 'JsonWebTokenError'){
 
-                 let message =  {
+                 let msg =  {
                     
                       "attachment": {
                         "type": "template",
@@ -227,8 +227,32 @@ router.post('/webhook', async (req, res) => {
                   "recipient": {
                     "id": psid
                   },
-                    "message": message
-                  };
+                    "message": {
+                    
+                      "attachment": {
+                        "type": "template",
+                        "payload": {
+                          "template_type": "button",
+                          "text": "Please login or check general info ?",
+                          "buttons": [
+                            {
+                              "type": "web_url",
+                              "url": "https://fb-dgflow-chatbot.herokuapp.com",
+                              "title": "Login",
+                              "webview_height_ratio": "compact",
+                              "messenger_extensions": true
+                            },
+                            {
+                              "type": "postback",
+                              "payload": "General Information",
+                              "title": "general info"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                }
+                  
             
                   callSendAPI(psid, request_body);
             
