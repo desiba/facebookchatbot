@@ -194,6 +194,11 @@ router.post('/webhook', async (req, res) => {
                 const errMsg = error.response.data.message ? error.response.data.message : error.response.data;
                 console.log(errMsg.err.name);
 
+                if(JSON.stringify(errMsg.err.name) == 'JsonWebTokenError'){
+                   console.log('error occured');
+                   return ;
+                }
+
 
                 /*
                 if(errMsg.err.name == 'JsonWebTokenError' || errMsg.error.type == 'OAuthException'){
