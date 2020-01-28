@@ -163,6 +163,10 @@ router.post('/webhook', (req, res) => {
   // Parse the request body from the POST
   let body = req.body;
 
+  console.log(JSON.stringify(data));
+  
+  
+/*
   // Check the webhook event is from a Page subscription
   if (body.object === 'page') {
 
@@ -189,11 +193,13 @@ router.post('/webhook', (req, res) => {
 
     // Return a '200 OK' response to all events
     res.status(200).send('EVENT_RECEIVED');
+   
 
   } else {
     // Return a '404 Not Found' if event is not from a page subscription
     res.sendStatus(404);
   }
+   */
     
 });
 
