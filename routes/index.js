@@ -168,7 +168,7 @@ router.post('/webhook', async (req, res) => {
   const action = req.body.queryResult.action;
   let parameters = req.body.queryResult.parameters;
 
-  console.log(req.body);
+  console.log(req.body.queryResult.outputContexts);
 
       switch(action) {
 
