@@ -192,7 +192,7 @@ router.post('/webhook', async (req, res) => {
               }).catch(function (error) {
             
                 const errMsg = error.response.data.message ? error.response.data.message : error.response.data;
-                console.log(errMsg);
+                console.log(errMsg.response);
 
 
                 /*
