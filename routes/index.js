@@ -163,10 +163,10 @@ router.post('/webhook', (req, res) => {
   // Parse the request body from the POST
   let body = req.body;
 
-  console.log(JSON.stringify(body));
+  //console.log(JSON.stringify(body));
   
   
-/*
+
   // Check the webhook event is from a Page subscription
   if (body.object === 'page') {
 
@@ -184,9 +184,11 @@ router.post('/webhook', (req, res) => {
      // Check if the event is a message or postback and
       // pass the event to the appropriate handler function
       if (webhook_event.message) {
-        handleMessage(sender_psid, webhook_event.message);        
+        console.log(webhook_event.message);
+        //handleMessage(sender_psid, webhook_event.message);        
       } else if (webhook_event.postback) {
-        handlePostback(sender_psid, webhook_event.postback);
+        console.log(webhook_event.postback);
+        //handlePostback(sender_psid, webhook_event.postback);
       }
       
     });
@@ -199,7 +201,7 @@ router.post('/webhook', (req, res) => {
     // Return a '404 Not Found' if event is not from a page subscription
     res.sendStatus(404);
   }
-   */
+  
     
 });
 
