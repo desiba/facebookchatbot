@@ -192,15 +192,8 @@ router.post('/webhook', async (req, res) => {
               }).catch(function (error) {
             
                 const errMsg = error.response.data.message ? error.response.data.message : error.response.data;
-                //console.log(errMsg.err.name);
-
+               
                 if(errMsg){
-                   console.log('error occured');
-                }
-
-
-                /*
-                if(errMsg.err.name == 'JsonWebTokenError' || errMsg.error.type == 'OAuthException'){
 
                   let request_body = {
                     "messaging_type": 'RESPONSE',
@@ -232,11 +225,10 @@ router.post('/webhook', async (req, res) => {
                         }
                       }
                   };
-                  
+
                   callSendAPI(request_body);
-            
-                };
-            */
+                   
+                }
 
            
               });
