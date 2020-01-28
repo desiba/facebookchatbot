@@ -158,7 +158,7 @@ router.get('/webhook', (req, res) => {
   }
 });
 
-router.post('/webhook', (req, res) => {
+router.post('/webhook', async (req, res) => {
 
  
 
@@ -170,14 +170,14 @@ router.post('/webhook', (req, res) => {
 
         case "input.total_investments":
 
-            async function login(email, password, psid){
 
+          
               await axios.post(`https://investor-portal-backend.herokuapp.com/api/investment/total`, {
                 headers: {
                   "authorization" : `Bearer ${token}`
                 }
               }).then(function (response) {
-                
+
                 console.log(response);
             
               }).catch(function (error) {
@@ -190,10 +190,14 @@ router.post('/webhook', (req, res) => {
             });
             
 
+           
 
-          
+
         break;
+       
       }
+
+      
 
   
 });
