@@ -194,7 +194,7 @@ router.post('/webhook', async (req, res) => {
                 const errMsg = error.response.data.message ? error.response.data.message : error.response.data;
                 //console.log(errMsg.err.name);
 
-                if(errMsg.err.name === 'JsonWebTokenError'){
+                if(errMsg){
                    console.log('error occured');
                 }
 
