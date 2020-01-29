@@ -172,14 +172,63 @@ router.post('/webhook', async (req, res) => {
 
       switch(action) {
 
+        case "input.daily_interest":
+
+            await axios.get(`https://investor-portal-backend.herokuapp.com/api/investment/check-interest`, {
+              headers: {
+                "Content-Type": "application/json",
+                "authorization" : `Bearer ${token}`
+              }
+            }).then(function (response) {
+
+              console.log(response.data);
+              sendTextMessage(psid, {"text": response.data.total_interest_amount});
+          
+          
+            }).catch(function (error) {
+          
+              const errMsg = error.response.data.message ? error.response.data.message : error.response.data;
+
+              console.log(errMsg);
+             
+             
+         
+            });
+
+
+        break;
+
+
+        case "input.wallet_balance":
+
+            await axios.get(`https://investor-portal-backend.herokuapp.com/api/wallet/balance`, {
+              headers: {
+                "Content-Type": "application/json",
+                "authorization" : `Bearer ${token}`
+              }
+            }).then(function (response) {
+
+              console.log(response.data);
+              sendTextMessage(psid, {"text": response.data.balance});
+          
+          
+            }).catch(function (error) {
+          
+              const errMsg = error.response.data.message ? error.response.data.message : error.response.data;
+
+              console.log(errMsg);
+
+         
+            });
+
+
+
+
+        break;
+
 
         case "input.total_investments":
 
-        console.log(token);
-        console.log(psid);
-
-
-          
               await axios.get(`https://investor-portal-backend.herokuapp.com/api/investment/total`, {
                 headers: {
                   "Content-Type": "application/json",
@@ -195,10 +244,10 @@ router.post('/webhook', async (req, res) => {
             
                 const errMsg = error.response.data.message ? error.response.data.message : error.response.data;
 
-                console.log(psid);
+                console.log(errMsg);
                
-                if(errMsg){
-
+               // if(errMsg){
+                  /*
                   let request_body = {
                     "messaging_type": 'RESPONSE',
                     "recipient": {
@@ -229,10 +278,11 @@ router.post('/webhook', async (req, res) => {
                         }
                       }
                   };
+                  */
 
-                  callSendAPI(request_body);
+                  //callSendAPI(request_body);
                    
-                }
+              //  }
 
            
               });
